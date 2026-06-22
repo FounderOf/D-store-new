@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Owner Panel — D! STORE</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+
+<link rel="stylesheet" href="../assets/css/variables.css">
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/components.css">
+<link rel="stylesheet" href="../assets/css/dashboard.css">
+</head>
+<body class="dashboard-body">
+
+<!-- ============================== LOGIN SCREEN ============================== -->
+<div class="dash-login-wrap" id="loginScreen">
+  <div class="dash-login-card card">
+    <div class="brand">
+      <span class="brand-mark">D!</span>
+      <span class="brand-text">D<span class="bang">!</span> STORE</span>
+    </div>
+    <h2>Owner Panel Login</h2>
+    <p class="sub">Masuk untuk mengelola pesanan dan melihat dashboard.</p>
+
+    <form id="ownerLoginForm">
+      <div class="form-group">
+        <label class="form-label">Username</label>
+        <input type="text" class="form-control" id="ownerUsername" placeholder="owner" autocomplete="username">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-control" id="ownerPassword" placeholder="••••••••" autocomplete="current-password">
+      </div>
+      <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-right-to-bracket"></i> Masuk</button>
+    </form>
+
+    <div class="dash-login-hint">Demo credentials — Username: <strong>owner</strong> &nbsp;|&nbsp; Password: <strong>owner123</strong></div>
+    <div style="text-align:center;margin-top:1rem">
+      <a href="../index.html" style="font-size:var(--fs-xs);color:var(--text-dimmer)"><i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============================== DASHBOARD SCREEN ============================== -->
+<div class="dash-shell" id="dashScreen" style="display:none">
+
+  <div class="dash-overlay" id="dashOverlay"></div>
+
+  <aside class="dash-sidebar" id="dashSidebar">
+    <div class="dash-sidebar-brand">
+      <span class="brand-mark" style="width:32px;height:32px;font-size:0.9rem">D!</span>
+      <span>D<span class="bang" style="color:var(--accent)">!</span> STORE</span>
+      <span class="dash-sidebar-role">Owner</span>
+    </div>
+
+    <nav class="dash-nav">
+      <div class="dash-nav-group">
+        <div class="dash-nav-label">Menu Utama</div>
+        <a href="#" class="active" data-tab="overview"><i class="fa-solid fa-gauge"></i> Dashboard</a>
+        <a href="#" data-tab="orders"><i class="fa-solid fa-receipt"></i> Semua Pesanan <span class="badge-count" id="pendingCountBadge">0</span></a>
+      </div>
+      <div class="dash-nav-group">
+        <div class="dash-nav-label">Filter Cepat</div>
+        <a href="#" data-tab="orders" data-filter="Pending"><i class="fa-solid fa-clock"></i> Pending</a>
+        <a href="#" data-tab="orders" data-filter="Processing"><i class="fa-solid fa-gear"></i> Processing</a>
+        <a href="#" data-tab="orders" data-filter="Completed"><i class="fa-solid fa-circle-check"></i> Completed</a>
+        <a href="#" data-tab="orders" data-filter="Rejected"><i class="fa-solid fa-circle-xmark"></i> Rejected</a>
+      </div>
+    </nav>
+
+    <div class="dash-sidebar-foot">
+      <div class="dash-user">
+        <div class="dash-user-avatar">O</div>
+        <div>
+          <div class="dash-user-name">Owner</div>
+          <div class="dash-user-mail">owner@dstore.id</div>
+        </div>
+        <button class="dash-logout" id="ownerLogoutBtn" title="Keluar"><i class="fa-solid fa-right-from-bracket"></i></button>
+      </div>
+    </div>
+  </aside>
+
+  <div class="dash-main">
+    <div class="dash-topbar">
+      <div style="display:flex;align-items:center;gap:0.8rem">
+        <button class="dash-sidebar-toggle" id="sidebarToggle"><i class="fa-solid fa-bars"></i></button>
+        <h1 id="topbarTitle">Dashboard</h1>
+      </div>
+      <a href="../index.html" target="_blank" class="btn btn-outline btn-sm"><i class="fa-solid fa-arrow-up-right-from-square"></i> Lihat Situs</a>
+    </div>
+
+    <div class="dash-content">
+
+      <!-- TAB: Overview -->
+      <div class="dash-tab-content" data-tabcontent="overview">
+        <div class="stat-grid">
+          <div class="stat-card card c-accent">
+            <div class="stat-card-icon"><i class="fa-solid fa-receipt"></i></div>
+            <div class="stat-card-value" id="statTotal">0</div>
+            <div class="stat-card-label">Total Pesanan</div>
+          </div>
+          <div class="stat-card card c-warning">
+            <div class="stat-card-icon"><i class="fa-solid fa-clock"></i></div>
+            <div class="stat-card-value" id="statPending">0</div>
+            <div class="stat-card-label">Pending</div>
+          </div>
+          <div class="stat-card card c-info">
+            <div class="stat-card-icon"><i class="fa-solid fa-gear"></i></div>
+            <div class="stat-card-value" id="statProcessing">0</div>
+            <div class="stat-card-label">Processing</div>
+          </div>
+          <div class="stat-card card c-success">
+            <div class="stat-card-icon"><i class="fa-solid fa-circle-check"></i></div>
+            <div class="stat-card-value" id="statCompleted">0</div>
+            <div class="stat-card-label">Completed</div>
+          </div>
+          <div class="stat-card card c-success">
+            <div class="stat-card-icon"><i class="fa-solid fa-sack-dollar"></i></div>
+            <div class="stat-card-value" id="statRevenue" style="font-size:1.3rem">Rp0</div>
+            <div class="stat-card-label">Revenue (Completed)</div>
+          </div>
+        </div>
+
+        <div class="dash-panel card">
+          <div class="dash-panel-head">
+            <h3>Pesanan Terbaru</h3>
+            <button class="btn btn-outline btn-sm" id="viewAllOrdersBtn">Lihat Semua <i class="fa-solid fa-arrow-right"></i></button>
+          </div>
+          <div class="table-wrap">
+            <table class="dash-table">
+              <thead>
+                <tr><th>Order ID</th><th>Produk</th><th>Nominal</th><th>Total</th><th>Status</th><th>Tanggal</th></tr>
+              </thead>
+              <tbody id="recentOrdersBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB: Orders -->
+      <div class="dash-tab-content" data-tabcontent="orders" style="display:none">
+        <div class="dash-panel card">
+          <div class="dash-panel-head">
+            <h3>Semua Pesanan</h3>
+            <div class="dash-toolbar">
+              <div class="dash-search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="orderSearchInput" placeholder="Cari Order ID / produk...">
+              </div>
+              <select id="orderStatusFilter">
+                <option value="all">Semua Status</option>
+                <option value="Pending">Pending</option>
+                <option value="Processing">Processing</option>
+                <option value="Completed">Completed</option>
+                <option value="Rejected">Rejected</option>
+              </select>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="dash-table">
+              <thead>
+                <tr><th>Order ID</th><th>Produk</th><th>User ID</th><th>Nominal</th><th>Bukti</th><th>Status</th><th>Aksi</th></tr>
+              </thead>
+              <tbody id="ordersTableBody"></tbody>
+            </table>
+          </div>
+          <div class="table-pagination">
+            <span id="paginationInfo"></span>
+            <div class="pagination-btns" id="paginationBtns"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ============================== MODAL: Order Detail / Approval ============================== -->
+<div class="modal-backdrop-custom" id="orderModal">
+  <div class="modal-box" id="orderModalBox">
+    <!-- Populated by JS -->
+  </div>
+</div>
+
+<!-- ============================== MODAL: Proof Image Viewer ============================== -->
+<div class="modal-backdrop-custom" id="proofModal">
+  <div class="modal-box" style="max-width:520px">
+    <div class="modal-head">
+      <h3>Bukti Transfer</h3>
+      <button class="modal-close" id="closeProofModal"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <img id="proofModalImg" class="modal-proof-img" alt="Bukti transfer">
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.12.0/sweetalert2.all.min.js"></script>
+
+<script src="../assets/js/data.js"></script>
+<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/common.js"></script>
+<script src="../assets/js/owner-panel.js"></script>
+</body>
+</html>
