@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="acc" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00E5FF"/>
+      <stop offset="100%" stop-color="#6366F1"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="80%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#00E5FF" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#00E5FF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="400" fill="url(#bg)"/>
+  <rect width="1200" height="400" fill="url(#glow)"/>
+  <g opacity="0.5" stroke="#00E5FF" stroke-width="1">
+    <line x1="0" y1="100" x2="1200" y2="100"/>
+    <line x1="0" y1="200" x2="1200" y2="200"/>
+    <line x1="0" y1="300" x2="1200" y2="300"/>
+  </g>
+  <circle cx="950" cy="150" r="160" fill="none" stroke="url(#acc)" stroke-width="2" opacity="0.4"/>
+  <circle cx="950" cy="150" r="100" fill="none" stroke="url(#acc)" stroke-width="2" opacity="0.6"/>
+  <text x="80" y="180" font-family="Arial, sans-serif" font-size="48" font-weight="800" fill="#FFFFFF">MOBILE LEGENDS</text>
+  <text x="80" y="225" font-family="Arial, sans-serif" font-size="22" fill="#94A3B8">Hemat hingga 15% semua nominal Diamond</text>
+  <rect x="80" y="260" width="160" height="46" rx="8" fill="url(#acc)"/>
+  <text x="160" y="289" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#02131A" text-anchor="middle">Top Up Sekarang</text>
+</svg>
