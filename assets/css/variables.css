@@ -1,0 +1,91 @@
+/* ==========================================================================
+   D! STORE — Design Tokens
+   Cyberpunk gaming dark theme, "Game Pass / ID Card" motif throughout
+   ========================================================================== */
+
+:root {
+  /* Brand Colors (fixed per brief) */
+  --primary: #0F172A;
+  --secondary: #111827;
+  --accent: #00E5FF;
+  --accent-rgb: 0, 229, 255;
+  --success: #10B981;
+  --success-rgb: 16, 185, 129;
+  --danger: #EF4444;
+  --danger-rgb: 239, 68, 68;
+  --bg: #020617;
+  --bg-rgb: 2, 6, 23;
+  --card: #0F172A;
+  --text: #FFFFFF;
+
+  /* Derived tones */
+  --text-dim: #94A3B8;
+  --text-dimmer: #64748B;
+  --border: rgba(148, 163, 184, 0.12);
+  --border-strong: rgba(148, 163, 184, 0.24);
+  --accent-glow: rgba(0, 229, 255, 0.35);
+  --warning: #F59E0B;
+  --warning-rgb: 245, 158, 11;
+
+  /* Gradients */
+  --grad-accent: linear-gradient(135deg, #00E5FF 0%, #0EA5E9 50%, #6366F1 100%);
+  --grad-card: linear-gradient(180deg, rgba(17, 24, 39, 0.9) 0%, rgba(2, 6, 23, 0.95) 100%);
+  --grad-radial-hero: radial-gradient(circle at 20% 20%, rgba(0, 229, 255, 0.18), transparent 45%),
+                       radial-gradient(circle at 80% 0%, rgba(99, 102, 241, 0.16), transparent 40%),
+                       radial-gradient(circle at 50% 100%, rgba(16, 185, 129, 0.08), transparent 50%);
+
+  /* Typography */
+  --font-display: 'Chakra Petch', 'Rajdhani', sans-serif;
+  --font-body: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Type scale */
+  --fs-xs: 0.75rem;
+  --fs-sm: 0.875rem;
+  --fs-base: 1rem;
+  --fs-md: 1.125rem;
+  --fs-lg: 1.375rem;
+  --fs-xl: 1.75rem;
+  --fs-2xl: 2.25rem;
+  --fs-3xl: 3rem;
+  --fs-4xl: 3.75rem;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  /* Shadow */
+  --shadow-card: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+  --shadow-glow: 0 0 40px var(--accent-glow);
+  --shadow-elevate: 0 20px 60px -15px rgba(0, 0, 0, 0.6);
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --t-fast: 0.2s;
+  --t-med: 0.4s;
+  --t-slow: 0.7s;
+
+  /* Layout */
+  --container-w: 1280px;
+  --header-h: 76px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
