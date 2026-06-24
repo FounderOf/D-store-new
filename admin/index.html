@@ -6,13 +6,10 @@
 <title>Admin Panel — D! STORE</title>
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
 <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
-
 <link rel="stylesheet" href="../assets/css/variables.css">
 <link rel="stylesheet" href="../assets/css/base.css">
 <link rel="stylesheet" href="../assets/css/components.css">
@@ -20,20 +17,19 @@
 </head>
 <body class="dashboard-body">
 
-<!-- ============================== LOGIN SCREEN ============================== -->
+<!-- LOGIN SCREEN -->
 <div class="dash-login-wrap" id="loginScreen">
   <div class="dash-login-card card">
-    <div class="brand">
+    <div class="brand" style="justify-content:center;margin-bottom:1.5rem;font-size:var(--fs-xl)">
       <span class="brand-mark">D!</span>
       <span class="brand-text">D<span class="bang">!</span> STORE</span>
     </div>
-    <h2>Admin Panel Login</h2>
-    <p class="sub">Masuk untuk mengelola produk, voucher, banner, dan kategori.</p>
-
+    <h2>Admin Panel</h2>
+    <p class="sub">Login dengan akun Firebase untuk mengelola konten toko.</p>
     <form id="adminLoginForm">
       <div class="form-group">
-        <label class="form-label">Username</label>
-        <input type="text" class="form-control" id="adminUsername" placeholder="admin" autocomplete="username">
+        <label class="form-label">Email</label>
+        <input type="email" class="form-control" id="adminEmail" placeholder="admin@dstore.id" autocomplete="email">
       </div>
       <div class="form-group">
         <label class="form-label">Password</label>
@@ -41,45 +37,49 @@
       </div>
       <button type="submit" class="btn btn-primary btn-block"><i class="fa-solid fa-right-to-bracket"></i> Masuk</button>
     </form>
-
-    <div class="dash-login-hint">Demo credentials — Username: <strong>admin</strong> &nbsp;|&nbsp; Password: <strong>admin123</strong></div>
+    <div class="dash-login-hint">
+      <i class="fa-solid fa-circle-info"></i>
+      Buat akun via console: <code>createAdminUser('admin@dstore.id','password','admin')</code><br>
+      Seed data: <code>seedFirestore()</code>
+    </div>
     <div style="text-align:center;margin-top:1rem">
       <a href="../index.html" style="font-size:var(--fs-xs);color:var(--text-dimmer)"><i class="fa-solid fa-arrow-left"></i> Kembali ke Beranda</a>
     </div>
   </div>
 </div>
 
-<!-- ============================== DASHBOARD SCREEN ============================== -->
+<!-- DASHBOARD SCREEN -->
 <div class="dash-shell" id="dashScreen" style="display:none">
-
   <div class="dash-overlay" id="dashOverlay"></div>
 
   <aside class="dash-sidebar" id="dashSidebar">
     <div class="dash-sidebar-brand">
-      <span class="brand-mark" style="width:32px;height:32px;font-size:0.9rem">D!</span>
+      <span class="brand-mark" style="width:32px;height:32px;font-size:.9rem">D!</span>
       <span>D<span class="bang" style="color:var(--accent)">!</span> STORE</span>
       <span class="dash-sidebar-role">Admin</span>
     </div>
-
     <nav class="dash-nav">
       <div class="dash-nav-group">
         <div class="dash-nav-label">Manajemen Konten</div>
         <a href="#" class="active" data-tab="products"><i class="fa-solid fa-boxes-stacked"></i> Produk & Voucher</a>
         <a href="#" data-tab="categories"><i class="fa-solid fa-grip"></i> Kategori</a>
-        <a href="#" data-tab="banners"><i class="fa-solid fa-image"></i> Banner</a>
+        <a href="#" data-tab="banners"><i class="fa-solid fa-image"></i> Banner Promosi</a>
       </div>
       <div class="dash-nav-group">
         <div class="dash-nav-label">Pengaturan</div>
         <a href="#" data-tab="settings"><i class="fa-solid fa-gear"></i> Pengaturan Toko</a>
       </div>
+      <div class="dash-nav-group">
+        <div class="dash-nav-label">Developer Tools</div>
+        <a href="#" id="seedDataBtn"><i class="fa-solid fa-database"></i> Seed Data Awal</a>
+      </div>
     </nav>
-
     <div class="dash-sidebar-foot">
       <div class="dash-user">
         <div class="dash-user-avatar">A</div>
         <div>
-          <div class="dash-user-name">Admin</div>
-          <div class="dash-user-mail">admin@dstore.id</div>
+          <div class="dash-user-name" id="adminDisplayEmail">Admin</div>
+          <div class="dash-user-mail">D! STORE Admin Panel</div>
         </div>
         <button class="dash-logout" id="adminLogoutBtn" title="Keluar"><i class="fa-solid fa-right-from-bracket"></i></button>
       </div>
@@ -88,7 +88,7 @@
 
   <div class="dash-main">
     <div class="dash-topbar">
-      <div style="display:flex;align-items:center;gap:0.8rem">
+      <div style="display:flex;align-items:center;gap:.8rem">
         <button class="dash-sidebar-toggle" id="sidebarToggle"><i class="fa-solid fa-bars"></i></button>
         <h1 id="topbarTitle">Produk & Voucher</h1>
       </div>
@@ -103,19 +103,14 @@
           <div class="dash-panel-head">
             <h3>Daftar Produk & Voucher</h3>
             <div class="dash-toolbar">
-              <div class="dash-search">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" id="productSearchInput" placeholder="Cari produk...">
-              </div>
+              <div class="dash-search"><i class="fa-solid fa-magnifying-glass"></i><input type="text" id="productSearchInput" placeholder="Cari produk..."></div>
               <button class="btn btn-primary btn-sm" id="addProductBtn"><i class="fa-solid fa-plus"></i> Tambah Produk</button>
             </div>
           </div>
           <div class="table-wrap">
             <table class="dash-table">
-              <thead>
-                <tr><th>Gambar</th><th>Nama Produk</th><th>Kategori</th><th>Jumlah Nominal</th><th>Harga Mulai</th><th>Populer</th><th>Aksi</th></tr>
-              </thead>
-              <tbody id="productsTableBody"></tbody>
+              <thead><tr><th>Gambar</th><th>Nama Produk</th><th>Kategori</th><th>Nominal</th><th>Harga Mulai</th><th>Populer</th><th>Aksi</th></tr></thead>
+              <tbody id="productsTableBody"><tr><td colspan="7"><div class="empty-state"><i class="fa-solid fa-spinner fa-spin"></i><p>Memuat...</p></div></td></tr></tbody>
             </table>
           </div>
         </div>
@@ -130,7 +125,7 @@
           </div>
           <div class="table-wrap">
             <table class="dash-table">
-              <thead><tr><th>Icon</th><th>Nama Kategori</th><th>ID Slug</th><th>Jumlah Produk</th><th>Aksi</th></tr></thead>
+              <thead><tr><th>Icon</th><th>Nama Kategori</th><th>ID Slug</th><th>Produk</th><th>Aksi</th></tr></thead>
               <tbody id="categoriesTableBody"></tbody>
             </table>
           </div>
@@ -146,7 +141,7 @@
           </div>
           <div class="table-wrap">
             <table class="dash-table">
-              <thead><tr><th>Preview</th><th>Judul</th><th>Subjudul</th><th>Status</th><th>Aksi</th></tr></thead>
+              <thead><tr><th>Preview</th><th>Judul</th><th>Subjudul</th><th>Aktif</th><th>Aksi</th></tr></thead>
               <tbody id="bannersTableBody"></tbody>
             </table>
           </div>
@@ -155,36 +150,18 @@
 
       <!-- TAB: Settings -->
       <div class="dash-tab-content" data-tabcontent="settings" style="display:none">
-        <div class="dash-panel card" style="max-width:640px">
+        <div class="dash-panel card" style="max-width:680px">
           <div class="dash-panel-head"><h3>Pengaturan Toko</h3></div>
           <form id="settingsForm">
-            <div class="form-group">
-              <label class="form-label">Nama Toko</label>
-              <input type="text" class="form-control" id="setStoreName">
+            <div class="form-group"><label class="form-label">Nama Toko</label><input type="text" class="form-control" id="setStoreName"></div>
+            <div class="form-group"><label class="form-label">Tagline</label><input type="text" class="form-control" id="setTagline"></div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+              <div class="form-group"><label class="form-label">Nomor WhatsApp</label><input type="text" class="form-control" id="setWhatsapp" placeholder="6281234567890"></div>
+              <div class="form-group"><label class="form-label">Email Support</label><input type="email" class="form-control" id="setEmail"></div>
             </div>
-            <div class="form-group">
-              <label class="form-label">Tagline</label>
-              <input type="text" class="form-control" id="setTagline">
-            </div>
-            <div class="form-row-2" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
-              <div class="form-group">
-                <label class="form-label">Nomor WhatsApp</label>
-                <input type="text" class="form-control" id="setWhatsapp">
-              </div>
-              <div class="form-group">
-                <label class="form-label">Email Support</label>
-                <input type="email" class="form-control" id="setEmail">
-              </div>
-            </div>
-            <div class="form-row-2" style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
-              <div class="form-group">
-                <label class="form-label">Instagram</label>
-                <input type="text" class="form-control" id="setInstagram">
-              </div>
-              <div class="form-group">
-                <label class="form-label">TikTok</label>
-                <input type="text" class="form-control" id="setTiktok">
-              </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+              <div class="form-group"><label class="form-label">Instagram</label><input type="text" class="form-control" id="setInstagram"></div>
+              <div class="form-group"><label class="form-label">TikTok</label><input type="text" class="form-control" id="setTiktok"></div>
             </div>
             <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Simpan Pengaturan</button>
           </form>
@@ -195,27 +172,41 @@
   </div>
 </div>
 
-<!-- ============================== MODAL: Product Form ============================== -->
-<div class="modal-backdrop-custom" id="productModal">
-  <div class="modal-box modal-lg" id="productModalBox"></div>
-</div>
+<!-- Modals -->
+<div class="modal-backdrop-custom" id="productModal"><div class="modal-box modal-lg" id="productModalBox"></div></div>
+<div class="modal-backdrop-custom" id="categoryModal"><div class="modal-box" id="categoryModalBox"></div></div>
+<div class="modal-backdrop-custom" id="bannerModal"><div class="modal-box" id="bannerModalBox"></div></div>
 
-<!-- ============================== MODAL: Category Form ============================== -->
-<div class="modal-backdrop-custom" id="categoryModal">
-  <div class="modal-box" id="categoryModalBox"></div>
-</div>
-
-<!-- ============================== MODAL: Banner Form ============================== -->
-<div class="modal-backdrop-custom" id="bannerModal">
-  <div class="modal-box" id="bannerModalBox"></div>
-</div>
-
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.12.0/sweetalert2.all.min.js"></script>
-
-<script src="../assets/js/data.js"></script>
-<script src="../assets/js/auth.js"></script>
+<script src="../assets/js/firebase-config.js"></script>
+<script src="../assets/js/firebase-app.js"></script>
+<script src="../assets/js/seed-data.js"></script>
+<script src="../assets/js/auth-firebase.js"></script>
 <script src="../assets/js/common.js"></script>
-<script src="../assets/js/admin.js"></script>
+<script src="../assets/js/admin-firebase.js"></script>
+<script>
+// Wire up Seed Data button
+document.getElementById('seedDataBtn')?.addEventListener('click', async (e) => {
+  e.preventDefault();
+  const ok = await dstoreConfirm({
+    title: 'Seed Data ke Firestore?',
+    text: 'Ini akan mengisi database dengan produk, kategori, dan banner default. Lakukan sekali saja!',
+    confirmText: 'Ya, Seed Sekarang', icon: 'warning'
+  });
+  if (ok) await seedFirestore();
+});
+
+// Show email in sidebar
+auth?.onAuthStateChanged(user => {
+  if (user) {
+    const el = document.getElementById('adminDisplayEmail');
+    if (el) el.textContent = user.email;
+  }
+});
+</script>
 </body>
 </html>
