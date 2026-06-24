@@ -77,3 +77,17 @@ function renderFaqList() {
     });
   });
 }
+
+// Inject Roblox FAQ items
+const ROBLOX_FAQ = [
+  { cat: 'roblox', q: 'Bagaimana cara top up Robux di D! STORE?', a: 'Pilih produk "Robux — Roblox" di halaman produk, masukkan username Roblox kamu (BUKAN password), pilih nominal, bayar, dan upload bukti transfer. Kami akan transfer Robux via marketplace atau game pass Roblox.' },
+  { cat: 'roblox', q: 'Apakah saya perlu share password Roblox untuk top up?', a: 'Tidak perlu! D! STORE tidak pernah meminta password akun Roblox kamu. Kami hanya butuh username untuk proses top up. Jaga kerahasiaan passwordmu.' },
+  { cat: 'roblox', q: 'Berapa lama Robux masuk setelah pembayaran?', a: 'Biasanya 15–60 menit setelah pembayaran terverifikasi. Proses lebih lama di jam sibuk. Kamu bisa lacak status via halaman Lacak Pesanan.' },
+  { cat: 'roblox', q: 'Apakah akun Roblox saya aman?', a: 'Sangat aman. Kami menggunakan metode transfer yang sah melalui marketplace Roblox atau game pass, tanpa memerlukan akses ke akun kamu sama sekali.' },
+  { cat: 'roblox', q: 'Apa bedanya Robux biasa dengan Roblox Premium?', a: 'Robux adalah mata uang virtual untuk beli item. Roblox Premium adalah langganan bulanan yang memberikan Robux rutin setiap bulan plus benefit tambahan seperti trading item.' }
+];
+
+// Merge into FAQ_DATA
+if (typeof FAQ_DATA !== 'undefined') {
+  ROBLOX_FAQ.forEach(item => FAQ_DATA.push(item));
+}
