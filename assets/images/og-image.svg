@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="acc" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00E5FF"/>
+      <stop offset="100%" stop-color="#6366F1"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="30%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#00E5FF" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#00E5FF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <g opacity="0.07" stroke="#94A3B8" stroke-width="1">
+    <line x1="0" y1="105" x2="1200" y2="105"/>
+    <line x1="0" y1="210" x2="1200" y2="210"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="525" x2="1200" y2="525"/>
+    <line x1="200" y1="0" x2="200" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="800" y1="0" x2="800" y2="630"/>
+    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  </g>
+  <!-- Logo mark -->
+  <rect x="80" y="80" width="80" height="80" rx="20" fill="url(#acc)"/>
+  <text x="120" y="142" font-family="Arial Black, sans-serif" font-size="48" font-weight="900" fill="#02131A" text-anchor="middle">D!</text>
+  <!-- Brand name -->
+  <text x="180" y="140" font-family="Arial, sans-serif" font-size="54" font-weight="800" fill="#FFFFFF" letter-spacing="2">D! STORE</text>
+  <!-- Tagline -->
+  <text x="80" y="200" font-family="Arial, sans-serif" font-size="26" fill="#00E5FF" letter-spacing="1">Top Up Cepat, Aman, dan Terpercaya</text>
+  <!-- Divider -->
+  <rect x="80" y="230" width="400" height="3" rx="2" fill="url(#acc)"/>
+  <!-- Products label -->
+  <text x="80" y="290" font-family="Arial, sans-serif" font-size="20" fill="#94A3B8">Tersedia untuk:</text>
+  <!-- Product chips row 1 -->
+  <rect x="80" y="310" width="170" height="44" rx="10" fill="rgba(0,229,255,0.1)" stroke="#00E5FF" stroke-width="1.5"/>
+  <text x="165" y="338" font-family="Arial, sans-serif" font-size="16" fill="#00E5FF" text-anchor="middle">Mobile Legends</text>
+  <rect x="265" y="310" width="130" height="44" rx="10" fill="rgba(245,158,11,0.1)" stroke="#F59E0B" stroke-width="1.5"/>
+  <text x="330" y="338" font-family="Arial, sans-serif" font-size="16" fill="#F59E0B" text-anchor="middle">Free Fire</text>
+  <rect x="410" y="310" width="150" height="44" rx="10" fill="rgba(16,185,129,0.1)" stroke="#10B981" stroke-width="1.5"/>
+  <text x="485" y="338" font-family="Arial, sans-serif" font-size="16" fill="#10B981" text-anchor="middle">PUBG Mobile</text>
+  <rect x="575" y="310" width="120" height="44" rx="10" fill="rgba(239,68,68,0.1)" stroke="#EF4444" stroke-width="1.5"/>
+  <text x="635" y="338" font-family="Arial, sans-serif" font-size="16" fill="#EF4444" text-anchor="middle">Valorant</text>
+  <!-- Product chips row 2 -->
+  <rect x="80" y="368" width="110" height="44" rx="10" fill="rgba(0,229,255,0.15)" stroke="#00E5FF" stroke-width="2"/>
+  <text x="135" y="396" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#00E5FF" text-anchor="middle">ROBLOX ✦</text>
+  <rect x="205" y="368" width="130" height="44" rx="10" fill="rgba(148,163,184,0.1)" stroke="#94A3B8" stroke-width="1.5"/>
+  <text x="270" y="396" font-family="Arial, sans-serif" font-size="16" fill="#94A3B8" text-anchor="middle">Steam Wallet</text>
+  <rect x="350" y="368" width="130" height="44" rx="10" fill="rgba(16,185,129,0.1)" stroke="#10B981" stroke-width="1.5"/>
+  <text x="415" y="396" font-family="Arial, sans-serif" font-size="16" fill="#10B981" text-anchor="middle">Google Play</text>
+  <rect x="495" y="368" width="110" height="44" rx="10" fill="rgba(99,102,241,0.1)" stroke="#6366F1" stroke-width="1.5"/>
+  <text x="550" y="396" font-family="Arial, sans-serif" font-size="16" fill="#818CF8" text-anchor="middle">& lainnya</text>
+  <!-- Stats -->
+  <text x="80" y="490" font-family="Arial Black, sans-serif" font-size="40" font-weight="900" fill="#FFFFFF">50.000+</text>
+  <text x="80" y="525" font-family="Arial, sans-serif" font-size="18" fill="#64748B">Transaksi Sukses</text>
+  <text x="340" y="490" font-family="Arial Black, sans-serif" font-size="40" font-weight="900" fill="#FFFFFF">15.000+</text>
+  <text x="340" y="525" font-family="Arial, sans-serif" font-size="18" fill="#64748B">Pelanggan Aktif</text>
+  <text x="600" y="490" font-family="Arial Black, sans-serif" font-size="40" font-weight="900" fill="#FFFFFF">99%</text>
+  <text x="600" y="525" font-family="Arial, sans-serif" font-size="18" fill="#64748B">Kepuasan</text>
+  <!-- Right decoration -->
+  <circle cx="1000" cy="315" r="200" fill="none" stroke="url(#acc)" stroke-width="1.5" opacity="0.4"/>
+  <circle cx="1000" cy="315" r="140" fill="none" stroke="url(#acc)" stroke-width="1" opacity="0.3"/>
+  <circle cx="1000" cy="315" r="80" fill="rgba(0,229,255,0.05)" stroke="url(#acc)" stroke-width="1.5" opacity="0.5"/>
+  <text x="1000" y="295" font-family="Arial Black, sans-serif" font-size="28" font-weight="900" fill="#00E5FF" text-anchor="middle">D!</text>
+  <text x="1000" y="335" font-family="Arial, sans-serif" font-size="16" fill="#94A3B8" text-anchor="middle">STORE</text>
+  <!-- URL -->
+  <text x="80" y="590" font-family="Arial, sans-serif" font-size="18" fill="#64748B">dstore.id</text>
+</svg>
